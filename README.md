@@ -1,1 +1,0 @@
-# photomap_server
