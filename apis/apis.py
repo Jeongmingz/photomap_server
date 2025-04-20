@@ -35,7 +35,7 @@ def qr_photo_check_api(request):
 		pass
 
 	response_data, url_dict = four_cut_photo_qr_download(site_id, url, photo_id, user)
-	create_photo_and_files(user, url, site_id, photo_id, url_dict)
+	create_photo_and_files(user, url, site_id, photo_id, url_dict, response_data)
 	return Response(response_data, status=status.HTTP_200_OK)
 
 

@@ -35,12 +35,23 @@ class Photo(models.Model):
 		blank=True,
 		)
 
+	'''
+	* status
+		정상처리 (시간내에 저장) = 0
+		비정상처리 (만료) = 1
+	'''
+	status = models.IntegerField(
+		default=0
+		)
+
+
+
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		indexes = [
-			models.Index(fields=['code'], name="photo_code_idx")
+			models.Index(fields=['code'], name="photo_code_idx"),
 			]
 
 class PhotoFile(models.Model):
@@ -55,4 +66,17 @@ class PhotoFile(models.Model):
 		)
 	order = models.IntegerField()
 	created_at = models.DateTimeField(auto_now_add=True)
+	'''
+		* status
+		정상처리 (크롤링으로 저장) = 0
+		비정상처리 (직접 저장) = 1
+	'''
+	status = models.IntegerField(
+		default=0
+		)
+
+	class Meta:
+		indexes = [
+			models.Index(fields=['photo'], name="file_photo_idx"),
+			]
 
